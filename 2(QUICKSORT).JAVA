@@ -1,5 +1,5 @@
 import java.util.Random;
-Import java.util.Scanner;
+import java.util.Scanner;
 public class Quicksort{
 static int max=10000;
 int partition(int[] a, int low,int high)
@@ -8,8 +8,7 @@ int p,i,j,temp;
 p=a[low];
 i=low+1;
 j=high;
-while(low<hi
-gh)
+while(low<high)
 {
 while(a[i]<=p&&i<high)
 i++;
@@ -24,7 +23,8 @@ a[j]=temp;
 else
 {
 temp=a[low];
-a[low]=a[j];a[j]=temp;
+a[low]=a[j];
+a[j]=temp;
 return j;
 }
 }
@@ -46,19 +46,21 @@ System.out.println ("Enter the array size");
 Scanner sc=new Scanner (System.in);
 n=sc.nextInt ();
 a= new int[max];
-Random generator=new Random ();for( i=0;i<n;i++)
+Random generator=new Random ();
+for( i=0;i<n;i++)
 a[i]=generator.nextInt(20);
 System.out.println("Array before sorting");
 for( i=0;i<n;i++)
 System.out.println(a[i]+" ");
 long startTime=System.nanoTime();
-quicksort m=new quicksort();
+Quicksort m=new Quicksort();
 m.sort(a,0,n-1);
-longstopTime=System.nanoTime();
-longelapseTime=(stopTime-startTime);
-System.out.println("Time taken to sort array is:"+elapseTime+"nano seconds”);
+long stopTime=System.nanoTime();
+long elapseTime=(stopTime-startTime);
+System.out.println("Time taken to sort array is:"+elapseTime+"nano seconds");
 System.out.println("Sorted array is");
 for(i=0;i<n;i++)
 System.out.println(a[i]);
 }
+    
 }

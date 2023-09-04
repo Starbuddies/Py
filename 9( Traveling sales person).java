@@ -1,59 +1,67 @@
+package tsp;
 
 import java.util.Scanner;
-public class TSP {
-staticint MAX = 100;
-static final int infinity= 999;
-public static void main(String args[]) {
-int cost = infinity;
-intc[][] =new int[MAX][MAX]; // cost matrix
-inttour[] =newint[MAX]; // optimaltour
-intn; // max.cities
-System.out.println("Travelling SalesmanProblem using Dynamic
-Programming\n");
-System.out.println("Enter number of cities: ");
-Scanner scanner = new Scanner(System.in);
-n = scanner.nextInt();
-System.out.println("Enter Cost matrix:\n");
-for (int i= 0; i< n; i++)
-for (int j= 0; j< n; j++) {
-c[i][j] = scanner.nextInt();
-if(c[i][j] == 0)
-c[i][j] = 999;
-}
-for (int i= 0; i< n; i++)
-tour[i] = i;
-cost = tspdp(c, tour, 0, n);
-// print tour cost and tour
-System.out.println("Minimum Tour Cost: "+ cost);
-System.out.println("\nTour:");
-for (int i= 0; i< n; i++) {
-System.out.print(tour[i] + "-> ");}
-System.out.println(tour[0] + "\n");
-scanner.close();
-}
-staticinttspdp(int c[][], int tour[], intstart, int n) {
-int i, j, k;
-int temp[] = new int[MAX]; int mintour[]
-= newint[MAX];
-int mincost;
-int cost;
-if(start == n- 2)
-return c[tour[n - 2]][tour[n - 1]] + c[tour[n - 1]][0];
-mincost = infinity;
-for (i = start + 1; i < n; i++) {
-for (j = 0; j < n; j++)
-temp[j] = tour[j];
-temp[start + 1] = tour[i];
-temp[i] = tour[start + 1];
-if(c[tour[start]][tour[i]] + (cost = tspdp(c, temp, start + 1, n)) <mincost)
+
+public class Tsp1
 {
-mincost = c[tour[start]][tour[i]] + cost;
-for (k= 0; k< n; k++)
-mintour[k] = temp[k];
+static int cost[][];
+public int tsp(int[] path, int start,int n)
+{
+int i,j,k,ccost;
+
+int[] mintour= new int[n+1]; 
+int[] temp=new int[n+1];
+if(start==n-1)
+return cost[path[n-1]][path[n]]+cost[path[n]][1];
+int mincost=999;
+for(i=start+1;i<=n;i++)
+{
+for(j=1;j<=n;j++)
+temp[j]=path[j];
+temp[start+1]=path[i];
+temp[i]=path[start+1];
+
+if(cost[path[start]][path[i]]+(ccost=tsp(temp,start+1,n))<mincost)
+{
+mincost=cost[path[start]][path[i]]+ccost;
+for(k=1;k<=n;k++)
+mintour[k]=temp[k];
 }
 }
-for (i= 0; i< n; i++)
-tour[i] = mintour[i];
+for(i=1;i<=n;i++)
+path[i]=mintour[i];
 return mincost;
 }
+public static void main(String[] args)
+{
+int mincost,n,i,j;
+Scanner s = new Scanner(System.in);
+System.out.println("enter the no of cities");
+n=s.nextInt();
+int path[] =new int[n+1]; 
+cost = new int[n+1][n+1];
+System.out.println("Enter the cost matrix"); 
+for(i=1;i<=n;i++)
+    for(j=1;j<=n;j++)
+cost[i][j]=s.nextInt();
+for(i=1;i<=n;i++) 
+    path[i]=i;
+Tsp1 obj = new Tsp1();
+mincost=obj.tsp(path,1,n);
+
+System.out.println("tsp tour");
+
+for(i=1;i<n;i++) 
+    System.out.print(path[i]+"->");
+
+System.out.println("1");
+System.out.println("Tourcosts="+ mincost);
 }
+}
+output
+  4
+Enter the cost matrix
+0 10 15 20 
+5 0 9 10 
+6 13 0 12
+8 8 9 0

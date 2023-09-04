@@ -1,13 +1,16 @@
+
+package prims;
+
 import java.util.Scanner;
-public class prims {
+public class Prims {
 public static void main(String[] args) {
 int w[ ][ ]=new int[10][10]; int
 n,i,j,s,k=0;
 int min;
-intsum=0; int
-u=0,v=0; int
-flag=0;
-intsol[ ]=new int[10];
+int sum=0; 
+int u=0,v=0; 
+int flag=0;
+int sol[ ]=new int[10];
 System.out.println("Enter the number of vertices");
 Scanner sc=new Scanner(System.in);
 n=sc.nextInt();
@@ -41,8 +44,29 @@ for(i=1;i<=n;i++)
 if(sol[i]==0) flag=1;
 if(flag==1)
 System.out.println("No spanning tree");
-Else
+else
 System.out.println("The cost ofminimum spanning tree is"+sum);
 sc.close();
 }
 }
+
+ouput
+  run:
+Enter the number of vertices
+6
+Enter the weighted graph
+0 3 99 99 6 5 
+3 0 1 99 99 4
+99 1 0 6 99 4
+99 99 6 0 8 5
+6 99 99 8 0 2
+5 4 4 5 2 0
+Enter the source vertex
+1
+1->2=3
+2->3=1
+2->6=4
+6->5=2
+6->4=5
+The cost ofminimum spanning tree is15
+

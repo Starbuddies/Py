@@ -1,6 +1,6 @@
 6) Krushkal's 
 import Java.util.Scanner;
-public class kruskal {
+public class Kruskal {
 int parent[]=new int[10];
 int find(int m)
 {

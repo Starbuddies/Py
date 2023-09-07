@@ -1,0 +1,33 @@
+import re
+
+import requests.
+
+from bs4 Import Beautiful Soup
+
+Site = 'https://www.codespeedy.com/"
+
+response = requests. get (site) Soup Beautiful Soup(response. text, 'html. Parser')
+
+image_tags = soup.find_all('img') urls = [Img ['srey for img in image_tags]
+
+for url in urls:
+
+filename = re.search (/([\-]+[] (jpg|gif|png| jpeg))', url)
+
+if not filename:
+
+Print ("Regular expression didn't match with
+
+the url: {}". format (UTL))
+
+Continue
+
+with open (file name. group (1), 'wb') as f:
+
+Lif 'http' not in url:
+
+MTL = {}{3. format (site, url) resporte = requests. get(url)
+
+f. write (response, content)
+
+Print("Download complete, download image can be found in current directory!")
